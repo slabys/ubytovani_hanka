@@ -24,13 +24,7 @@
 
     <x-ubytovani />
 
-    <section id="galerie" class="min-h-screen flex items-center justify-center">
-        <p class="font-['Cormorant_Garamond'] text-2xl text-[#f5f0e8]/40 tracking-widest uppercase">
-            Galerie section
-        </p>
-    </section>
-
-    <section id="kontakt" class="min-h-screen flex items-center justify-center">
+<section id="kontakt" class="min-h-screen flex items-center justify-center">
         <p class="font-['Cormorant_Garamond'] text-2xl text-[#f5f0e8]/40 tracking-widest uppercase">
             Kontakt section
         </p>
