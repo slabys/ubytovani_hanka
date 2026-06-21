@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Schemas\FooterSection;
 use App\Filament\Schemas\HeroSection;
 use App\Filament\Schemas\KontaktSection;
 use App\Filament\Schemas\NavSection;
@@ -38,6 +39,7 @@ class Homepage extends Page
             'ubytovani' => PageContent::get('ubytovani', UbytovaniSection::defaults()),
             'sluzby' => PageContent::get('sluzby', SluzbySection::defaults()),
             'kontakt' => PageContent::get('kontakt', KontaktSection::defaults()),
+            'footer' => PageContent::get('footer', FooterSection::defaults()),
         ]);
     }
 
@@ -55,6 +57,7 @@ class Homepage extends Page
                 UbytovaniSection::make(),
                 SluzbySection::make(),
                 KontaktSection::make(),
+                FooterSection::make(),
             ])
             ->statePath('data');
     }
@@ -68,6 +71,7 @@ class Homepage extends Page
         PageContent::set('ubytovani', $data['ubytovani']);
         PageContent::set('sluzby', $data['sluzby']);
         PageContent::set('kontakt', $data['kontakt']);
+        PageContent::set('footer', $data['footer']);
 
         Notification::make()->title('Uloženo')->success()->send();
     }

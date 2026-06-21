@@ -29,5 +29,7 @@
 
     <x-kontakt />
 
+    <x-footer />
+
 </body>
 </html>
