@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Filament\Schemas\HeroSection;
 use App\Filament\Schemas\KontaktSection;
 use App\Filament\Schemas\NavSection;
+use App\Filament\Schemas\SluzbySection;
 use App\Filament\Schemas\UbytovaniSection;
 use App\Models\PageContent;
 use BackedEnum;
@@ -35,6 +36,7 @@ class Homepage extends Page
             'nav_items' => PageContent::get('nav_items', NavSection::defaults()),
             'hero' => PageContent::get('hero', HeroSection::defaults()),
             'ubytovani' => PageContent::get('ubytovani', UbytovaniSection::defaults()),
+            'sluzby' => PageContent::get('sluzby', SluzbySection::defaults()),
             'kontakt' => PageContent::get('kontakt', KontaktSection::defaults()),
         ]);
     }
@@ -51,6 +53,7 @@ class Homepage extends Page
                 NavSection::make(),
                 HeroSection::make(),
                 UbytovaniSection::make(),
+                SluzbySection::make(),
                 KontaktSection::make(),
             ])
             ->statePath('data');
@@ -63,6 +66,7 @@ class Homepage extends Page
         PageContent::set('nav_items', $data['nav_items']);
         PageContent::set('hero', $data['hero']);
         PageContent::set('ubytovani', $data['ubytovani']);
+        PageContent::set('sluzby', $data['sluzby']);
         PageContent::set('kontakt', $data['kontakt']);
 
         Notification::make()->title('Uloženo')->success()->send();

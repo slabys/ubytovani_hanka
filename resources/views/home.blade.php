@@ -25,6 +25,8 @@
 
     <x-ubytovani />
 
+    <x-sluzby />
+
     <x-kontakt />
 
 </body>
