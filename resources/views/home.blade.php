@@ -15,6 +15,7 @@
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>html { scroll-behavior: smooth; }</style>
 </head>
 <body class="bg-[#0a1a10] min-h-screen">
 
@@ -24,11 +25,7 @@
 
     <x-ubytovani />
 
-<section id="kontakt" class="min-h-screen flex items-center justify-center">
-        <p class="font-['Cormorant_Garamond'] text-2xl text-[#f5f0e8]/40 tracking-widest uppercase">
-            Kontakt section
-        </p>
-    </section>
+    <x-kontakt />
 
 </body>
 </html>
