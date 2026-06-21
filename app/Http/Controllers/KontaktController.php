@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactConfirmation;
 use App\Mail\ContactInquiry;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class KontaktController extends Controller
 {
-    public function send(Request $request): RedirectResponse
+    public function send(Request $request): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -18,6 +19,7 @@ class KontaktController extends Controller
             'phone' => ['required', 'string', 'max:30'],
             'message' => ['required', 'string', 'max:5000'],
         ]);
+
         Mail::to(config('mail.from.address'))->send(new ContactInquiry(
             name: $validated['name'],
             email: $validated['email'],
@@ -30,6 +32,10 @@ class KontaktController extends Controller
             body: $validated['message'],
         ));
 
-        return redirect()->to('/#kontakt')->with('success', 'Zpráva byla odeslána. Brzy se vám ozveme!');
+        if ($request->expectsJson()) {
+            return response()->json(['success' => true]);
+        }
+
+        return redirect()->back()->with('success', 'Zpráva byla odeslána. Brzy se vám ozveme!');
     }
 }

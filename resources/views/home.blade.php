@@ -17,7 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>html { scroll-behavior: smooth; }</style>
 </head>
-<body class="bg-[#0a1a10] min-h-screen">
+<body class="bg-[#faf8f3] min-h-screen">
 
     <x-navbar />
 
