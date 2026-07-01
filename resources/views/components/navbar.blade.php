@@ -5,6 +5,9 @@
         ['label' => 'Galerie', 'anchor' => 'galerie'],
         ['label' => 'Kontakt', 'anchor' => 'kontakt'],
     ]);
+    $siteSettings = \App\Models\PageContent::get('settings', \App\Filament\Pages\Settings::defaults());
+    $siteName = $siteSettings['site_name'] ?? config('app.name', 'Ubytování Hanka');
+    $siteLogo = !empty($siteSettings['logo']) ? asset('storage/' . $siteSettings['logo']) : null;
 @endphp
 
 <nav
@@ -18,14 +21,23 @@
 
             {{-- Logo --}}
             <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-8 h-8 border border-[#c9a96e]/60 rotate-45 flex items-center justify-center shrink-0 group-hover:border-[#c9a96e] transition-colors duration-300">
-                    <div class="w-2 h-2 bg-[#c9a96e] rotate-0"></div>
-                </div>
+                @if($siteLogo)
+                    <img
+                        src="{{ $siteLogo }}"
+                        alt="{{ $siteName }}"
+                        class="h-10 w-auto transition-opacity duration-300 group-hover:opacity-80"
+                    >
+                @else
+                    <div class="w-8 h-8 border border-[#c9a96e]/60 rotate-45 flex items-center justify-center shrink-0 group-hover:border-[#c9a96e] transition-colors duration-300">
+                        <div class="w-2 h-2 bg-[#c9a96e] rotate-0"></div>
+                    </div>
+                @endif
                 <span
                     :class="scrolled ? 'text-[#1c1a14]' : 'text-[#f5f0e8]'"
                     class="font-['Cormorant_Garamond'] text-xl font-semibold tracking-widest uppercase leading-none transition-colors duration-500"
                 >
-                    Ubytování<br>
+                    Ubytování
+                    <br>
                     <span class="text-[#c9a96e] text-sm tracking-[0.3em]">Hanka</span>
                 </span>
             </a>
@@ -72,7 +84,7 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-2"
-        class="md:hidden bg-[#faf8f3]/98 backdrop-blur-md border-t border-[#c9a96e]/15"
+        class="md:hidden bg-white border-t border-[#c9a96e]/15"
         @click.away="open = false"
     >
         <div class="px-6 py-6 flex flex-col gap-5">

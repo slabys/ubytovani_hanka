@@ -1,12 +1,21 @@
+@php
+    $siteSettings = \App\Models\PageContent::get('settings', \App\Filament\Pages\Settings::defaults());
+    $siteName = $siteSettings['site_name'] ?? config('app.name', 'Ubytování Hanka');
+    $siteLogo = !empty($siteSettings['logo']) ? asset('storage/' . $siteSettings['logo']) : null;
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Ubytování Hanka') }} – Frymburk, Lipno</title>
+    <title>{{ $siteName }}</title>
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    @if($siteLogo)
+        <link rel="icon" href="{{ $siteLogo }}" type="image/svg+xml">
+    @else
+        <link rel="icon" href="/favicon.ico" sizes="any">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    @endif
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
